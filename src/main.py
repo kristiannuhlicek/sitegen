@@ -1,4 +1,4 @@
-from textnode import TextNode, TextType
+from textnode import TextNode, TextType, text_node_to_html_node
 from htmlnode import HTMLnode, LeafNode, ParentNode
 
 def main():
@@ -10,27 +10,20 @@ def main():
 
     #another_node = HTMLnode("a", None, None, {"href": "https://www.google.com", "target": "_blank"})
 
-    #print(another_node.props_to_html())
-    #print(another_node)
+ 
+        
+
+    node = TextNode("Just testing around", TextType.NORMAL)
+    print(text_node_to_html_node(node))
+
     """
-    leaf_node_1 = LeafNode("p", "This is a paragraph of text.")
-    leaf_node_2 = LeafNode("a", "Click me!", {"href": "https://www.google.com"})
-    print(leaf_node_1.to_html())
-    print(leaf_node_2.to_html())
+    TextType.TEXT: This should become a LeafNode with no tag, just a raw text value.
+    TextType.BOLD: This should become a LeafNode with a "b" tag and the text
+    TextType.ITALIC: "i" tag, text
+    TextType.CODE: "code" tag, text
+    TextType.LINK: "a" tag, anchor text, and "href" prop
+    TextType.IMAGE: "img" tag, empty string value, "src" and "alt" props ("src" is the image URL, "alt" is the alt text)
     """
 
-    node = ParentNode(
-        "p",
-        [
-            LeafNode("b", "Bold text"),
-            LeafNode(None, "Normal text"),
-            LeafNode("i", "italic text"),
-            LeafNode(None, "Normal text"),
-        ],
-        None
-    )
-
-    print(node.to_html())
-    
 
 main()
